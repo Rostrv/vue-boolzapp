@@ -27,7 +27,6 @@ body {
     top: 10%;
     left: 15%;
     background-color: #ebeaeb;
-    border: 2px solid grey;
 }
 
 .thumbnail img {
@@ -37,7 +36,7 @@ body {
 
 .icons i {
     color: #b1b0b0;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .notifications {
@@ -55,4 +54,60 @@ body {
     background-color: white;
     padding: 6px 20px;
     border-right: 1px solid #ebeaeb;
+}
+
+.message-list {
+    overflow-y: scroll;
+    max-height: 500px;
+}
+
+.users {
+    background-color: white;
+}
+
+.message-container {
+    background: url(./img/whats_bg.jpg);
+    background-repeat: repeat;
+    height: 560px;
+    padding: 50px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    width: 250px;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    margin-bottom: 30px;
+}
+
+.green {
+    background-color: #d5f9ba;
+    align-self: flex-end;
+}
+
+.white {
+    background-color: white;
+    align-self: flex-start;
+}
+
+
+/* .received {
+    background-color: white;
+    width: 250px;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    padding: 1rem;
+    margin-bottom: 30px;
+} */
+
+.new-message {
+    height: 70px;
+}
+
+.message-input {
+    width: 80%;
 }

@@ -22,8 +22,8 @@
                     <div class="col-5 border p-0">
                         <div class="user d-flex justify-content-between align-items-center p-2">
                             <div class="thumbnail">
-                                <img src="./img/avatar_1.jpg" alt="">
-                                <span class="name fw-bold">Mario</span>
+                                <img src="./img/avatar_io.jpg" alt="">
+                                <span class="name fw-bold">Sofia</span>
                             </div>
                             <div class="icons">
                                 <i class="fa-solid fa-circle-notch fa-xl"></i>
@@ -53,33 +53,28 @@
                         </div>
 
                         <div class="message-list border-top">
-                            <div class="users p-2 d-flex justify-content-between align-items-center">
-                                <div class="">
+                            <div class="  d-flex flex-column justify-content-between ">
+                                <div class="users p-2 border-bottom" v-for="(contact, index) in contacts" :class="contact_switch === index ? 'active' : ''" @click="contact_switch=index">
                                     <div class="thumbnail d-flex align-items-center">
-                                        <img src="./img/avatar_2.jpg" alt="">
+                                        <img :src="'/img/avatar' + contact.avatar + '.jpg'" alt="">
                                         <div class="testo d-flex flex-column ms-2">
-                                            <span class="name fw-bold">Mario</span>
-                                            <span class="text-secondary">ultimo accesso</span>
+                                            <span class="name fw-bold">{{contact.name}}</span>
+                                            <span class="text-secondary">ultimo messaggio</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-column ms-2">
-                                    <span class="text-secondary">12:00</span>
-                                    <span class=""></span>
-                                </div>
-
                             </div>
 
                         </div>
 
                     </div>
-                    <div class="col-7 border">
+                    <div class="col-7 border p-0">
                         <div class="receiver p-2 d-flex justify-content-between align-items-center">
                             <div class="">
                                 <div class="thumbnail d-flex align-items-center">
-                                    <img src="./img/avatar_2.jpg" alt="">
+                                    <img :src="'/img/avatar' + contacts[contact_switch].avatar + '.jpg'" alt="">
                                     <div class="testo d-flex flex-column ms-2">
-                                        <span class="name fw-bold">Mario</span>
+                                        <span class="name fw-bold">{{contacts[contact_switch].name}}</span>
                                         <span class="text-secondary">ultimo accesso</span>
                                     </div>
                                 </div>
@@ -93,6 +88,18 @@
 
                         <div class="message-container">
 
+                            <div class="message rounded-3" :class="message.status === 'sent' ? 'green' : 'white'" v-for="message in contacts[contact_switch].messages">
+                                <p>{{message.message}}</p>
+                                <!--  <div class="time_message">{{message.date}}</div> -->
+                            </div>
+
+
+                        </div>
+
+                        <div class="new-message d-flex justify-content-evenly align-items-center">
+                            <i class="fa-regular fa-face-smile fa-xl"></i>
+                            <input type="text" class=" message-input border-0 form-control"></input>
+                            <i class="fa-solid fa-microphone fa-xl"></i>
                         </div>
                     </div>
                 </div>

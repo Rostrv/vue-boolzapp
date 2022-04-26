@@ -154,7 +154,8 @@ const app = new Vue({
                     }
                 ],
             }
-        ]
+        ],
+        contact_switch: 0,
     }
 
 });
