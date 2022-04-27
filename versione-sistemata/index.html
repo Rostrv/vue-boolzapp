@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Boolzapp</title>
+    <link rel="stylesheet" href="../versione-sistemata/style.css">
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="green"></div>
+        <div class="grey"></div>
+        <div class="container p-0">
+            <div class="left">
+                <div class="box-top-left p-2">
+                    <div class="thumbnail">
+                        <img src="../versione-sistemata/img/avatar_io.jpg" alt="">
+                        <span class="name fw-bold">Sofia</span>
+                    </div>
+                    <div class="icons">
+                        <i class="fa-solid fa-circle-notch fa-xl"></i>
+                        <i class="fa-solid fa-message fa-xl"></i>
+                        <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                    </div>
+                </div>
+                <div class="box-notification-left p-2">
+                    <div class="bell">
+                        <i class="fa-solid fa-bell-slash fa-xl"></i>
+                    </div>
+                    <div class="testo d-flex flex-column ms-2">
+                        <span class="">Ricevi notifiche di nuovi messaggi</span>
+                        <a href="" class="text-secondary">attiva le notifiche Desktop</a>
+                    </div>
+                </div>
+
+                <div class="box-search-left p-2">
+                    <div class="search-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input class="border-0 form-control" type="text" placeholder="cerca o inizia una nuova chat" v-model="filterContact">
+                </div>
+                <div class="box-user-list-left">
+                    <div class="users p-2 border-bottom" v-for="(contact, index) in contacts" v-if="contact.name.toLowerCase().includes(filterContact)" :class="contact_switch === index ? 'active' : ''" @click="contact_switch=index">
+                        <div class="thumbnail d-flex align-items-center">
+                            <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="">
+                            <div class="testo d-flex flex-column ms-2">
+                                <span class="name fw-bold">{{contact.name}}</span>
+                                <span class="text-secondary">ultimo messaggio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="box-top-right">
+                    <div class="thumbnail d-flex align-items-center">
+                        <img :src="'./img/avatar' + contacts[contact_switch].avatar + '.jpg'" alt="">
+                        <div class="testo d-flex flex-column ms-2">
+                            <span class="name fw-bold">{{contacts[contact_switch].name}}</span>
+                            <span class="text-secondary">ultimo accesso</span>
+                        </div>
+                    </div>
+                    <div class="icons">
+                        <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+                        <i class="fa-solid fa-paperclip fa-xl"></i>
+                        <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                    </div>
+                </div>
+                <div class="box-middle-right">
+                    <div class="message rounded-3" :class="message.status === 'sent' ? 'green-message' : 'white-message'" v-for="(message) in contacts[contact_switch].messages">
+                        <p class="m-0">{{message.message}}</p>
+                        <span class="time-message">{{message.date.substring(11,16)}}</span>
+                    </div>
+                </div>
+                <div class="box-bottom-right">
+                    <i class="fa-regular fa-face-smile fa-xl"></i>
+                    <input type="text" class=" message-input border-0 form-control" @keyup.enter="sendMessage" v-model="newMessage"></input>
+                    <i class="fa-solid fa-microphone fa-xl"></i>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <script src='https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js'></script>
+    <script src="../versione-sistemata/app.js"></script>
+</body>
+
+</html>
