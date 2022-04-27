@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../vecchia versione/style.css">
     <title>BoolzApp</title>
 </head>
 
@@ -49,14 +49,14 @@
 
                         <div class="search_user d-flex p-2 align-items-center">
                             <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                            <input class="border-0 form-control" type="text" placeholder="cerca o inizia una nuova chat">
+                            <input class="border-0 form-control" type="text" placeholder="cerca o inizia una nuova chat" v-model="filterContact">
                         </div>
 
                         <div class="message-list border-top">
                             <div class="  d-flex flex-column justify-content-between ">
-                                <div class="users p-2 border-bottom" v-for="(contact, index) in contacts" :class="contact_switch === index ? 'active' : ''" @click="contact_switch=index">
+                                <div class="users p-2 border-bottom" v-for="(contact, index) in contacts" v-if="contact.name.toLowerCase().includes(filterContact)" :class="contact_switch === index ? 'active' : ''" @click="contact_switch=index">
                                     <div class="thumbnail d-flex align-items-center">
-                                        <img :src="'/img/avatar' + contact.avatar + '.jpg'" alt="">
+                                        <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="">
                                         <div class="testo d-flex flex-column ms-2">
                                             <span class="name fw-bold">{{contact.name}}</span>
                                             <span class="text-secondary">ultimo messaggio</span>
@@ -72,7 +72,7 @@
                         <div class="receiver p-2 d-flex justify-content-between align-items-center">
                             <div class="">
                                 <div class="thumbnail d-flex align-items-center">
-                                    <img :src="'/img/avatar' + contacts[contact_switch].avatar + '.jpg'" alt="">
+                                    <img :src="'./img/avatar' + contacts[contact_switch].avatar + '.jpg'" alt="">
                                     <div class="testo d-flex flex-column ms-2">
                                         <span class="name fw-bold">{{contacts[contact_switch].name}}</span>
                                         <span class="text-secondary">ultimo accesso</span>
@@ -88,8 +88,9 @@
 
                         <div class="message-container">
 
-                            <div class="message rounded-3" :class="message.status === 'sent' ? 'green' : 'white'" v-for="message in contacts[contact_switch].messages">
+                            <div class="message rounded-3" :class="message.status === 'sent' ? 'green' : 'white'" v-for="(message) in contacts[contact_switch].messages">
                                 <p>{{message.message}}</p>
+                                <span></span>
                                 <!--  <div class="time_message">{{message.date}}</div> -->
                             </div>
 
@@ -98,7 +99,7 @@
 
                         <div class="new-message d-flex justify-content-evenly align-items-center">
                             <i class="fa-regular fa-face-smile fa-xl"></i>
-                            <input type="text" class=" message-input border-0 form-control"></input>
+                            <input type="text" class=" message-input border-0 form-control" @keyup.enter="sendMessage" v-model="newMessage"></input>
                             <i class="fa-solid fa-microphone fa-xl"></i>
                         </div>
                     </div>
@@ -113,7 +114,7 @@
     </div>
 
     <script src='https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js'></script>
-    <script src="./app.js"></script>
+    <script src="../vecchia versione/app.js"></script>
 </body>
 
 </html>

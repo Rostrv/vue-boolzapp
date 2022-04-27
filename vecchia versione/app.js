@@ -156,6 +156,37 @@ const app = new Vue({
             }
         ],
         contact_switch: 0,
+        newMessage: '',
+        filterContact: '',
+    },
+
+    methods: {
+        sendMessage() {
+            console.log(this.newMessage)
+
+            let sentMessage = {
+                date: ``,
+                message: this.newMessage,
+                status: `sent`
+            }
+
+            this.contacts[this.contact_switch].messages.push(sentMessage)
+
+            this.newMessage = ``
+
+            setTimeout(this.autoMessage, 1000)
+        },
+
+        autoMessage() {
+            let auto = {
+                date: ``,
+                message: `Ok`,
+                status: `received`
+            }
+            this.contacts[this.contact_switch].messages.push(auto)
+        }
     }
+
+
 
 });
