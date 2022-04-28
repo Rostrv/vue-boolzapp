@@ -52,7 +52,8 @@
                             <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="">
                             <div class="testo d-flex flex-column ms-2">
                                 <span class="name fw-bold">{{contact.name}}</span>
-                                <span class="text-secondary">ultimo messaggio</span>
+                                <span class="text-secondary">{{contact.messages[contact.messages.length-1].message}}</span>
+                                <span class="date">{{contact.messages[contact.messages.length-1].date.substring(11,16)}}</span>
                             </div>
                         </div>
                     </div>

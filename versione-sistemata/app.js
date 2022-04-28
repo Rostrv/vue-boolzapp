@@ -168,12 +168,12 @@ const app = new Vue({
             let sentMessage = {
                 date: new Date().toLocaleString(),
                 message: this.newMessage,
-                status: `sent`
+                status: 'sent'
             }
 
             this.contacts[this.contact_switch].messages.push(sentMessage)
 
-            this.newMessage = ``
+            this.newMessage = ''
 
             setTimeout(this.autoMessage, 1000)
         },
@@ -181,8 +181,8 @@ const app = new Vue({
         autoMessage() {
             let auto = {
                 date: new Date().toLocaleString(),
-                message: `Ok`,
-                status: `received`
+                message: 'Ok',
+                status: 'received'
             }
             this.contacts[this.contact_switch].messages.push(auto)
         },
