@@ -186,6 +186,11 @@ const app = new Vue({
             }
             this.contacts[this.contact_switch].messages.push(auto)
         },
+
+
+        deleteMessage(index) {
+            this.contacts[this.contact_switch].messages.splice(index, 1)
+        },
     }
 
 

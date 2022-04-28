@@ -156,13 +156,20 @@
     
     .users {
         background-color: white;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .date {
+        font-size: smaller;
+        color: grey;
     }
     
     .message {
         width: 250px;
         display: flex;
         flex-direction: column;
-        padding: 1rem;
+        padding: 5px;
         margin-bottom: 30px;
     }
     

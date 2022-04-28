@@ -52,10 +52,10 @@
                             <img :src="'./img/avatar' + contact.avatar + '.jpg'" alt="">
                             <div class="testo d-flex flex-column ms-2">
                                 <span class="name fw-bold">{{contact.name}}</span>
-                                <span class="text-secondary">{{contact.messages[contact.messages.length-1].message}}</span>
-                                <span class="date">{{contact.messages[contact.messages.length-1].date.substring(11,16)}}</span>
+                                <span class="text-secondary" v-if="contacts[index].messages.length >= 1">{{contact.messages[contact.messages.length-1].message}}</span>
                             </div>
                         </div>
+                        <div class="date" v-if="contacts[index].messages.length >= 1">{{contact.messages[contact.messages.length-1].date.substring(11,16)}}</div>
                     </div>
                 </div>
             </div>
@@ -75,18 +75,30 @@
                     </div>
                 </div>
                 <div class="box-middle-right">
-                    <div class="message rounded-3" :class="message.status === 'sent' ? 'green-message' : 'white-message'" v-for="(message) in contacts[contact_switch].messages">
-                        <p class="m-0">{{message.message}}</p>
+                    <div class="message rounded-3" :class="message.status === 'sent' ? 'green-message' : 'white-message'" v-for="(message,index) in contacts[contact_switch].messages">
+                        <div class="m-0 d-flex justify-content-between">{{message.message}}
+                            <div class="dropdown">
+                                <i class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                  
+                                </i>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" @click="deleteMessage(index)">delete message</a></li>
+                                </ul>
+                            </div>
+                        </div>
                         <span class="time-message">{{message.date.substring(11,16)}}</span>
                     </div>
-                </div>
-                <div class="box-bottom-right">
-                    <i class="fa-regular fa-face-smile fa-xl"></i>
-                    <input type="text" class=" message-input border-0 form-control" @keyup.enter="sendMessage" v-model="newMessage"></input>
-                    <i class="fa-solid fa-microphone fa-xl"></i>
+
+
                 </div>
             </div>
+            <div class="box-bottom-right">
+                <i class="fa-regular fa-face-smile fa-xl"></i>
+                <input type="text" class=" message-input border-0 form-control" @keyup.enter="sendMessage" v-model="newMessage"></input>
+                <i class="fa-solid fa-microphone fa-xl"></i>
+            </div>
         </div>
+    </div>
 
 
     </div>
@@ -94,6 +106,7 @@
 
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src='https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js'></script>
     <script src="../versione-sistemata/app.js"></script>
 </body>
